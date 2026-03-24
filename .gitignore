@@ -1,0 +1,14 @@
+# Environments 
+venv/ 
+env/ 
+.venv/ 
+ 
+# API Keys and Secrets 
+.env 
+secrets.json 
+keys.json 
+ 
+# Python and Data Science Caches 
+__pycache__/ 
+*.py[cod] 
+.ipynb_checkpoints/ 

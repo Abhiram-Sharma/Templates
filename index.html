@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Hub — Download Professional Templates</title>
+    <meta name="description" content="A curated collection of professional templates for Power BI, IEEE/LaTeX papers, patents, presentations, and more. Free to download." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        dark: {
+                            50:  '#f8fafc',
+                            100: '#e2e8f0',
+                            200: '#cbd5e1',
+                            300: '#94a3b8',
+                            400: '#64748b',
+                            500: '#475569',
+                            600: '#334155',
+                            700: '#1e293b',
+                            800: '#0f172a',
+                            900: '#020617',
+                            950: '#010313',
+                        },
+                        accent: {
+                            DEFAULT: '#6366f1',
+                            light:   '#818cf8',
+                            dark:    '#4f46e5',
+                            glow:    'rgba(99, 102, 241, 0.15)',
+                        }
+                    },
+                    animation: {
+                        'fade-in':    'fadeIn 0.5s ease-out forwards',
+                        'slide-up':   'slideUp 0.5s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+                        'shimmer':    'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn:  { from: { opacity: 0 }, to: { opacity: 1 } },
+                        slideUp: { from: { opacity: 0, transform: 'translateY(24px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+                        shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #020617; }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.9) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.25);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.08), 0 8px 32px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+        .category-pill.active {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #818cf8, #6366f1);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(30,41,59,0.5) 25%, rgba(51,65,85,0.5) 50%, rgba(30,41,59,0.5) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+            border-radius: 0.75rem;
+        }
+        .search-glow:focus-within {
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3), 0 0 20px rgba(99, 102, 241, 0.1);
+        }
+        .badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 9999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-pbix   { background: rgba(239,68,68,0.15); color: #fca5a5; }
+        .badge-docx   { background: rgba(59,130,246,0.15); color: #93c5fd; }
+        .badge-pdf    { background: rgba(234,88,12,0.15);  color: #fdba74; }
+        .badge-zip    { background: rgba(34,197,94,0.15);  color: #86efac; }
+        .badge-pptx   { background: rgba(249,115,22,0.15); color: #fdba74; }
+        .badge-doc    { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+        .badge-other  { background: rgba(148,163,184,0.15); color: #cbd5e1; }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.5), rgba(15,23,42,0.7));
+            border: 1px solid rgba(99,102,241,0.06);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="dark min-h-screen font-sans text-dark-100 antialiased selection:bg-accent/30 selection:text-white">
+
+    <!-- Background glows -->
+    <div class="hero-glow top-[-200px] left-[-200px] fixed"></div>
+    <div class="hero-glow bottom-[-200px] right-[-200px] fixed"></div>
+
+    <!-- Header -->
+    <header class="relative z-10 border-b border-dark-700/50 backdrop-blur-xl bg-dark-900/60 sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center shadow-lg shadow-accent/20">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold bg-gradient-to-r from-white to-dark-200 bg-clip-text text-transparent">Template Hub</h1>
+                    <p class="text-xs text-dark-400 hidden sm:block">Professional templates, free to download</p>
+                </div>
+            </div>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" id="github-link"
+               class="flex items-center gap-2 px-4 py-2 rounded-lg bg-dark-700/50 border border-dark-600/50 text-dark-200 hover:bg-dark-600/50 hover:text-white transition-all text-sm font-medium">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span class="hidden sm:inline">GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-10 sm:mb-14 animate-fade-in">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
+                <span class="bg-gradient-to-r from-white via-dark-100 to-dark-300 bg-clip-text text-transparent">Professional Templates</span>
+            </h2>
+            <p class="text-dark-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                Curated collection of Power BI reports, IEEE/LaTeX paper drafts, patent documents, and more.
+                <span class="text-dark-400">Browse, search, and download — no sign‑up required.</span>
+            </p>
+
+            <!-- Stats row -->
+            <div id="stats-row" class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Search + Filter bar -->
+        <section class="mb-8 animate-slide-up" style="animation-delay: 0.1s">
+            <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+                <!-- Search -->
+                <div class="relative flex-1 search-glow rounded-xl transition-all">
+                    <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-400 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input id="search-input" type="text" placeholder="Search templates…"
+                           class="w-full pl-12 pr-4 py-3.5 bg-dark-800/80 border border-dark-600/50 rounded-xl text-dark-100 placeholder-dark-400 focus:outline-none focus:border-accent/50 transition-all text-sm" />
+                </div>
+            </div>
+
+            <!-- Category pills -->
+            <div id="category-pills" class="flex flex-wrap gap-2 mt-4">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Template grid -->
+        <section id="template-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            <!-- Loading skeletons -->
+            <div class="skeleton h-48"></div>
+            <div class="skeleton h-48"></div>
+            <div class="skeleton h-48"></div>
+            <div class="skeleton h-48"></div>
+            <div class="skeleton h-48"></div>
+            <div class="skeleton h-48"></div>
+        </section>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="hidden text-center py-20">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-dark-800 flex items-center justify-center">
+                <svg class="w-8 h-8 text-dark-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-dark-200 mb-1">No templates found</h3>
+            <p class="text-dark-400 text-sm">Try adjusting your search or filter.</p>
+        </div>
+
+        <!-- Error state -->
+        <div id="error-state" class="hidden text-center py-20">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-red-500/10 flex items-center justify-center">
+                <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-red-300 mb-1">Failed to load templates</h3>
+            <p class="text-dark-400 text-sm mb-4" id="error-message">Could not connect to the GitHub API.</p>
+            <button onclick="fetchTemplates()" class="px-5 py-2.5 rounded-lg bg-dark-700 border border-dark-600 text-dark-200 hover:bg-dark-600 transition-all text-sm font-medium">Try Again</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-dark-700/30 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-dark-500 text-xs">&copy; 2025 Template Hub. Open sourced on GitHub.</p>
+            <p class="text-dark-600 text-xs">Powered by GitHub Pages &amp; GitHub API</p>
+        </div>
+    </footer>
+
+<script>
+// ======================================================================
+// CONFIGURATION — Update these values to match your GitHub repository
+// ======================================================================
+const USERNAME    = "Abhiram-Sharma";          // ← Your GitHub username
+const REPO_NAME   = "templates";               // ← Your repository name
+const FOLDER_PATH = "assets";                  // ← Folder containing the templates
+// ======================================================================
+
+const API_URL = `https://api.github.com/repos/${USERNAME}/${REPO_NAME}/contents/${FOLDER_PATH}`;
+
+// ── Category Definitions ──────────────────────────────────────────────
+// Map each file to a category based on keywords in the filename.
+const CATEGORIES = [
+    {
+        id: 'all',
+        label: 'All Templates',
+        icon: '📋',
+        color: 'from-indigo-500 to-violet-500',
+        match: () => true,
+    },
+    {
+        id: 'powerbi',
+        label: 'Power BI',
+        icon: '📊',
+        color: 'from-yellow-500 to-orange-500',
+        match: (name) => name.toLowerCase().endsWith('.pbix'),
+    },
+    {
+        id: 'ieee-latex',
+        label: 'IEEE & LaTeX',
+        icon: '📝',
+        color: 'from-emerald-500 to-teal-500',
+        match: (name) => {
+            const n = name.toLowerCase();
+            return (
+                n.includes('ieee') ||
+                n.includes('latex') ||
+                n.includes('tmi_') ||
+                n.includes('elsarticle') ||
+                n.includes('access_latex')
+            );
+        },
+    },
+    {
+        id: 'paper-draft',
+        label: 'Paper Drafts',
+        icon: '📄',
+        color: 'from-blue-500 to-cyan-500',
+        match: (name) => {
+            const n = name.toLowerCase();
+            return (
+                n.includes('template_of_the_research') ||
+                n.includes('word+template') ||
+                n.includes('access-template') ||
+                n.includes('best paper')
+            );
+        },
+    },
+    {
+        id: 'author',
+        label: 'Author & Submission',
+        icon: '✍️',
+        color: 'from-purple-500 to-pink-500',
+        match: (name) => {
+            const n = name.toLowerCase();
+            return (
+                n.includes('declaration') ||
+                n.includes('ethics') ||
+                n.includes('funding') ||
+                n.includes('bosch') ||
+                n.includes('transactions - journals')
+            );
+        },
+    },
+    {
+        id: 'patent',
+        label: 'Patents & Invention',
+        icon: '💡',
+        color: 'from-amber-500 to-red-500',
+        match: (name) => {
+            const n = name.toLowerCase();
+            return (
+                n.includes('patent') ||
+                n.includes('invention') ||
+                n.includes('prior art') ||
+                n.includes('ir_ip')
+            );
+        },
+    },
+];
+
+// ── State ─────────────────────────────────────────────────────────────
+let allTemplates     = [];
+let activeCategory   = 'all';
+let searchQuery      = '';
+
+// ── Helpers ───────────────────────────────────────────────────────────
+function formatSize(bytes) {
+    if (bytes === 0) return '0 B';
+    const units = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return `${(bytes / Math.pow(1024, i)).toFixed(i > 0 ? 1 : 0)} ${units[i]}`;
+}
+
+function getExtension(filename) {
+    const parts = filename.split('.');
+    return parts.length > 1 ? parts.pop().toLowerCase() : '';
+}
+
+function getBadgeClass(ext) {
+    const map = { pbix: 'badge-pbix', docx: 'badge-docx', doc: 'badge-doc', pdf: 'badge-pdf', zip: 'badge-zip', pptx: 'badge-pptx' };
+    return map[ext] || 'badge-other';
+}
+
+function getFileIcon(ext) {
+    const icons = {
+        pbix: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>`,
+        docx: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`,
+        doc:  `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`,
+        pdf:  `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 9h3.75m-3.75 3h3.75M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`,
+        zip:  `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>`,
+        pptx: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/></svg>`,
+    };
+    return icons[ext] || `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`;
+}
+
+function getCategory(filename) {
+    // Return the first specific (non-"all") category that matches
+    for (let i = 1; i < CATEGORIES.length; i++) {
+        if (CATEGORIES[i].match(filename)) return CATEGORIES[i];
+    }
+    return CATEGORIES[0]; // fallback
+}
+
+function cleanFilename(name) {
+    // Remove long date-prefixed strings and prettify
+    return name
+        .replace(/^\d{8}-\d{6}-\d{8}-\d{6}-/, '')  // strip double-date prefix
+        .replace(/^\d{8}-\d{6}-/, '')                 // strip single-date prefix
+        .replace(/\[1\]/, '')                          // remove [1]
+        .replace(/\+/g, ' ')                           // replace + with space
+        .replace(/[-_]/g, ' ')                         // replace dashes/underscores with space
+        .replace(/\.\w+$/, '')                          // remove extension
+        .replace(/\s+/g, ' ')                           // normalize spaces
+        .trim();
+}
+
+// ── Rendering ─────────────────────────────────────────────────────────
+function renderStats() {
+    const container = document.getElementById('stats-row');
+    const totalSize = allTemplates.reduce((sum, t) => sum + (t.size || 0), 0);
+    const extensionSet = new Set(allTemplates.map(t => getExtension(t.name)));
+
+    const stats = [
+        { label: 'Templates',  value: allTemplates.length, icon: '📄' },
+        { label: 'Categories', value: CATEGORIES.length - 1, icon: '📂' },
+        { label: 'File Types', value: extensionSet.size, icon: '🗂️' },
+        { label: 'Total Size', value: formatSize(totalSize), icon: '💾' },
+    ];
+
+    container.innerHTML = stats.map(s => `
+        <div class="stat-card rounded-xl px-5 py-3 flex items-center gap-3">
+            <span class="text-lg">${s.icon}</span>
+            <div class="text-left">
+                <div class="text-white font-bold text-lg leading-tight">${s.value}</div>
+                <div class="text-dark-400 text-xs">${s.label}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderCategoryPills() {
+    const container = document.getElementById('category-pills');
+    const counts = {};
+    CATEGORIES.forEach(c => { counts[c.id] = 0; });
+
+    allTemplates.forEach(t => {
+        counts['all']++;
+        const cat = getCategory(t.name);
+        if (cat.id !== 'all') counts[cat.id]++;
+    });
+
+    container.innerHTML = CATEGORIES.map(c => `
+        <button onclick="setCategory('${c.id}')"
+                class="category-pill flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 border
+                       ${activeCategory === c.id
+                           ? 'active border-transparent'
+                           : 'bg-dark-800/60 border-dark-600/40 text-dark-300 hover:bg-dark-700/60 hover:text-dark-100 hover:border-dark-500/50'}">
+            <span>${c.icon}</span>
+            <span>${c.label}</span>
+            <span class="ml-1 text-[10px] opacity-70">${counts[c.id]}</span>
+        </button>
+    `).join('');
+}
+
+function renderCards() {
+    const grid  = document.getElementById('template-grid');
+    const empty = document.getElementById('empty-state');
+
+    // Filter
+    let filtered = allTemplates;
+
+    if (activeCategory !== 'all') {
+        const cat = CATEGORIES.find(c => c.id === activeCategory);
+        if (cat) filtered = filtered.filter(t => cat.match(t.name));
+    }
+
+    if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(t => t.name.toLowerCase().includes(q) || cleanFilename(t.name).toLowerCase().includes(q));
+    }
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+    }
+
+    empty.classList.add('hidden');
+
+    grid.innerHTML = filtered.map((t, i) => {
+        const ext  = getExtension(t.name);
+        const cat  = getCategory(t.name);
+        const icon = getFileIcon(ext);
+        const displayName = cleanFilename(t.name);
+        const downloadUrl = t.download_url || `https://raw.githubusercontent.com/${USERNAME}/${REPO_NAME}/main/${FOLDER_PATH}/${encodeURIComponent(t.name)}`;
+
+        return `
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 animate-slide-up group" style="animation-delay:${Math.min(i * 0.04, 0.6)}s; opacity:0;">
+            <!-- Top row: icon + badges -->
+            <div>
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br ${cat.color} bg-opacity-10 flex items-center justify-center text-white/80 shrink-0"
+                         style="background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(79,70,229,0.06));">
+                        ${icon}
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="badge ${getBadgeClass(ext)}">${ext || '?'}</span>
+                    </div>
+                </div>
+
+                <!-- Filename -->
+                <h3 class="text-sm font-semibold text-dark-100 mb-1 line-clamp-2 leading-snug group-hover:text-white transition-colors" title="${t.name}">
+                    ${displayName}
+                </h3>
+
+                <!-- Meta -->
+                <div class="flex items-center gap-3 text-xs text-dark-400 mb-4">
+                    <span class="flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                        ${formatSize(t.size)}
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <span>${cat.icon}</span>
+                        ${cat.label}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Download button -->
+            <a href="${downloadUrl}" download="${t.name}"
+               class="download-btn w-full text-center py-2.5 rounded-xl text-white text-sm font-semibold flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                Download
+            </a>
+        </div>`;
+    }).join('');
+}
+
+// ── Event Handlers ────────────────────────────────────────────────────
+function setCategory(id) {
+    activeCategory = id;
+    renderCategoryPills();
+    renderCards();
+}
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim();
+    renderCards();
+});
+
+// ── Fetch from GitHub API ─────────────────────────────────────────────
+async function fetchTemplates() {
+    const grid  = document.getElementById('template-grid');
+    const error = document.getElementById('error-state');
+    const empty = document.getElementById('empty-state');
+
+    // Show skeleton loading
+    grid.innerHTML = Array(6).fill('<div class="skeleton h-48"></div>').join('');
+    error.classList.add('hidden');
+    empty.classList.add('hidden');
+
+    try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+        const data = await res.json();
+
+        // Filter to only files (not directories)
+        allTemplates = data.filter(item => item.type === 'file');
+
+        renderStats();
+        renderCategoryPills();
+        renderCards();
+
+        // Update the GitHub link to point to the actual repo
+        document.getElementById('github-link').href = `https://github.com/${USERNAME}/${REPO_NAME}`;
+
+    } catch (err) {
+        console.error('Failed to fetch templates:', err);
+        grid.innerHTML = '';
+        document.getElementById('error-message').textContent = err.message;
+        error.classList.remove('hidden');
+    }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────
+fetchTemplates();
+</script>
+
+</body>
+</html>
